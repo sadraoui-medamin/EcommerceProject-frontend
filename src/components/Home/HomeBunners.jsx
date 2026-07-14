@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BsFire } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa6";
+import apiBaseUrl from "../../config/api";
 
 
 const HomeBannerCarousel = () => {
@@ -14,9 +15,9 @@ const HomeBannerCarousel = () => {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/homebunner/list");
+        const res = await axios.get(`${apiBaseUrl}/api/homebunner/list`);
         setBanners(res.data?.HomeBanners || []);
-        const productRes = await axios.get("http://localhost:4000/api/product/list");
+        const productRes = await axios.get(`${apiBaseUrl}/api/product/list`);
         setproductData(productRes.data?.products || []);
       } catch (error) {
         console.error("Error fetching banners or product:", error);

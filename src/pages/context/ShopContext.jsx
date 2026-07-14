@@ -1,12 +1,12 @@
 import React, { createContext, useEffect, useState } from "react";
-import {products} from '../../assets2/data.js'
 export const ShopContext = createContext(null);
 import axios from "axios";
+import apiBaseUrl from "../../config/api.js";
 
 const ShopContextProvider = ( props ) => { 
   const [cartItems, setCartItems] = useState({}); // Object to store cart items with itemId and size
   const [token, setToken] = useState("");
-  const url="http://localhost:4000";
+  const url = apiBaseUrl;
   const [all_products, setAll_products] = useState([]);
   let delivery_charge =10;
   const [search, setSearch] = useState("")
@@ -22,7 +22,7 @@ const ShopContextProvider = ( props ) => {
   //  fetch website infos 
   const fetchWebsiteInfo = async ()=>{
     try {
-      const res = await axios.get('http://localhost:4000/api/aboutUs/getInfo') || {};
+      const res = await axios.get(`${url}/api/aboutUs/getInfo`) || {};
       console.log(res)
       setWebSiteInfo({
         siteName: res.data?.data?.siteName || "",
@@ -188,7 +188,7 @@ const ShopContextProvider = ( props ) => {
   //My Favorites fromm db
   const fetchFavorites = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/favorites/getAll", {
+      const res = await axios.get(`${url}/api/favorites/getAll`, {
         headers: { token },
         signal: AbortSignal.timeout(1000) // Add timeout
       });
@@ -203,7 +203,7 @@ const ShopContextProvider = ( props ) => {
   //get My Compare List fromm db
   const fetchCompares= async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/compares/getAll", {
+      const res = await axios.get(`${url}/api/compares/getAll`, {
         headers: {token},
         signal: AbortSignal.timeout(1000) // Add timeout
 
@@ -218,7 +218,7 @@ const ShopContextProvider = ( props ) => {
   };
   // Create the context value to share with child components
   const contextValue = {
-      products, all_products, cartItems, setCartItems, addToCart,
+      products: all_products, all_products, cartItems, setCartItems, addToCart,
       removeFromCart, getTotalCartAmount, getCartCount, token, setToken, url, currency,
       delivery_charge, search, setSearch, showSearch, setShowSearch,updateQuantity,countfavorite,
       fetchFavorites,favorites,setFavorites,countcompare,compares,setCompares,fetchCompares,webSiteInfo

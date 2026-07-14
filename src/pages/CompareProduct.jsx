@@ -7,6 +7,7 @@ import { ShopContext } from "./context/ShopContext";
 import EmptyImg from "../components/Compare/empty";
 import { IoClose } from "react-icons/io5";
 import { Commet } from "react-loading-indicators";
+import apiBaseUrl from "../config/api";
 const CompareProducts = () => {
   const { token,fetchCompares,compares,countcompare} = useContext(ShopContext);
   const [comparesProducts, setComparesProducts] = useState([]);
@@ -16,7 +17,7 @@ const CompareProducts = () => {
   const fetchComparesProducts = async () => {
 
     try {
-      const res = await axios.get("http://localhost:4000/api/product/list");
+      const res = await axios.get(`${apiBaseUrl}/api/product/list`);
       const products = res.data?.products || [];
       // Filter the products based on the CompareProducts array
       if (products.length != 0) {
@@ -46,7 +47,7 @@ const CompareProducts = () => {
   const removeFromCompares = async (productId) => {
          try {
           const response = await axios.post(
-             "http://localhost:4000/api/compares/toggle",
+             `${apiBaseUrl}/api/compares/toggle`,
              { productId }
              ,{
                headers:  { token },

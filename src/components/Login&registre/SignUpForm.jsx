@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ShopContext } from "../../pages/context/ShopContext.jsx";
 import { toast } from "react-toastify"; // Make sure to install and import react-toastify
 import "react-toastify/dist/ReactToastify.css"; // React-toastify CSS
+import apiBaseUrl from "../../config/api";
 
 const SignUpForm = ({setShowLogin, toggleForm,close }) => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const SignUpForm = ({setShowLogin, toggleForm,close }) => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:4000/api/user/register", formData); // Replace `newUrl` and `data` with your variables
+      const response = await axios.post(`${apiBaseUrl}/api/user/register`, formData); // Replace `newUrl` and `data` with your variables
   
       if (response.data.success) {
         // Store the token and handle success

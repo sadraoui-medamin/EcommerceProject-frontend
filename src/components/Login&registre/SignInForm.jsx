@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { ShopContext } from "../../pages/context/ShopContext.jsx";
+import apiBaseUrl from "../../config/api";
 
 
 import { toast } from "react-toastify"; // Make sure to install and import react-toastify
@@ -36,7 +37,7 @@ const SignInForm = ({setShowLogin,  toggleForm,close  }) => {
     }
 
     try {
-      const response = await axios.post("http://localhost:4000/api/user/login",formData );
+      const response = await axios.post(`${apiBaseUrl}/api/user/login`,formData );
 
       if (response.data.success) {
         // Handle success

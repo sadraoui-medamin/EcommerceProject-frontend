@@ -10,6 +10,7 @@ import { ShopContext } from "./context/ShopContext";
 import Emptyfavorite from "../components/Favorite/EmptyFavorite";
 import { IoClose } from "react-icons/io5";
 import { Commet } from "react-loading-indicators";
+import apiBaseUrl from "../config/api";
 const FavoritesProducts = () => {
   const { token,addToCart,fetchFavorites,favorites,fetchCompares,compares} = useContext(ShopContext);
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const FavoritesProducts = () => {
   const fetchfavoritesProducts = async () => {
 
     try {
-      const res = await axios.get("http://localhost:4000/api/product/list");
+      const res = await axios.get(`${apiBaseUrl}/api/product/list`);
       const products = res.data?.products || [];
       // Filter the products based on the favorites array
       if (products.length != 0) {
@@ -87,7 +88,7 @@ const FavoritesProducts = () => {
          }
          try {
           const response = await axios.post(
-             "http://localhost:4000/api/favorites/toggle",
+             `${apiBaseUrl}/api/favorites/toggle`,
              { productId }
              ,{
                headers:  { token },
@@ -107,7 +108,7 @@ const FavoritesProducts = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/compares/toggle",
+        `${apiBaseUrl}/api/compares/toggle`,
         { productId },
         { headers: { token } }
       );

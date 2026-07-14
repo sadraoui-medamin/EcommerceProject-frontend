@@ -1,5 +1,5 @@
 import React from 'react';
-import aboutImg from "../assets2/about.png"; // Fixed import
+import aboutImg from "../assets/image.png";
 import { RiDoubleQuotesL } from "react-icons/ri";
 
 const About = () => {

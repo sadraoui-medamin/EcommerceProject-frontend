@@ -2,18 +2,18 @@ import React, { useContext, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Ensure axios is imported
 import { ShopContext } from './context/ShopContext';
+import apiBaseUrl from '../config/api';
 
 const Verify = () => {
   const [searchParams] = useSearchParams();
   const success = searchParams.get('success');
   const orderId = searchParams.get('orderId');
 
-  const { url } = useContext(ShopContext);
   const navigate = useNavigate();
 
   const verifyPayment = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/order/verify', {
+      const response = await axios.post(`${apiBaseUrl}/api/order/verify`, {
         orderId, // Pass orderId and success as an object
         success,
       });

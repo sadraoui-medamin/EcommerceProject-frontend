@@ -3,6 +3,7 @@ import React,{ useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ShopContext } from "../../pages/context/ShopContext";
 import { Button, Tooltip } from "antd";
+import apiBaseUrl from "../../config/api";
 
 const FavoriteButton = ({ productId,toggleModal }) => {
   const { token,fetchFavorites,favorites} = useContext(ShopContext);
@@ -22,7 +23,7 @@ const FavoriteButton = ({ productId,toggleModal }) => {
     }
     try {
      const response = await axios.post(
-        "http://localhost:4000/api/favorites/toggle",
+        `${apiBaseUrl}/api/favorites/toggle`,
         { productId }
         ,{
           headers:  { token },
