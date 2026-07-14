@@ -20,7 +20,7 @@ import CompareProduct from "./pages/CompareProduct";
 import Profile from "./pages/ProfileSettings";
 export default function App(){
   //if user !loginned  we must show login button 
-  const [showLogin, setShowLogin] = useState(true);
+  const [setShowLogin] = useState(true);
   // modal login & sign up
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
@@ -46,6 +46,7 @@ return (
       <Route path="/place-order" element={<Order />}/>
       <Route path="/verify" element={<Verify />}/>
       <Route path="/myorders" element={<MyOrders />}/>
+      <Route path="/about" element={<About />}/>
       <Route path="/compares" element={<CompareProduct />}/>
       <Route path="/favorites" element={<FavoritesProducts />}/>
       <Route path="/profile" element={<Profile setShowLogin={setShowLogin}/>}/>
